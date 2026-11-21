@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Jeevan Kumar & Krishna Kumari | Wedding Invitation</title>
+  
+  <!-- Open Graph Meta Tags for WhatsApp Preview Card -->
+  <meta property="og:title" content="💍 Jeevan Kumar & Krishna Kumari - Wedding Invitation 💐">
+  <meta property="og:description" content="10th Dec 2026 @ Srikakulam | We solicit your gracious presence with family & friends!">
+  <meta property="og:type" content="website">
+  
+  <!-- Google Fonts: Telugu & Royal Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Great+Vibes&family=Mandali&family=Ramabhadra&family=Suranna&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #750014;       /* Royal Maroon */
+      --primary-dark: #4d000c;  /* Deep Crimson */
+      --gold: #D4AF37;          /* Classic Gold */
+      --gold-light: #FBF5B7;    /* Light Gold Shimmer */
+      --gold-dark: #AA771C;     /* Antique Bronze Gold */
+      --cream: #FFFDF8;         /* Festive Cream Silk */
+      --text-dark: #2C1810;     /* Rich Espresso */
+      --text-muted: #6B4E3D;
+      --card-bg: rgba(255, 253, 248, 0.94);
+      --border-gold: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 20%, #4d000c 0%, #2b0006 100%);
+      color: var(--text-dark);
+      font-family: 'Mandali', 'Segoe UI', Tahoma, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Traditional Mandala Watermark Background */
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      opacity: 0.08;
+      background-image: radial-gradient(#D4AF37 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Canvas for Falling Petals */
+    #petalsCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Floating Music & Language Controls */
+    .top-floating-bar {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      left: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .pill-btn {
+      pointer-events: auto;
+      background: rgba(43, 0, 6, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 7px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: all 0.25s ease;
+    }
+    .pill-btn:active {
+      transform: scale(0.95);
+      background: var(--gold);
+      color: var(--primary-dark);
+    }
+
+    /* Container for Mobile view (max 480px centered) */
+    .mobile-container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 24px 14px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Main Wedding Invitation Card */
+    .invitation-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 30px 18px;
+      margin-top: 40px;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 25px rgba(212, 175, 55, 0.3);
+      border: 2px solid transparent;
+      border-image: var(--border-gold) 1;
+      text-align: center;
+    }
+
+    /* Traditional Corner Border Accents */
+    .corner-decor {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--gold-dark);
+    }
+    .corner-tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+    .corner-tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+    .corner-bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+    .corner-br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+    /* Top Sacred Blessings Header */
+    .sacred-header {
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 15px;
+      letter-spacing: 1px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .sacred-header span {
+      position: relative;
+    }
+    .sacred-header span:not(:last-child)::after {
+      content: "•";
+      margin-left: 10px;
+      color: var(--gold-dark);
+    }
+
+    .ganesha-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 10px;
+      display: block;
+      filter: drop-shadow(0 2px 5px rgba(170, 119, 28, 0.4));
+    }
+
+    .family-blessing {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .family-blessing strong {
+      color: var(--primary);
+    }
+
+    /* Main Invitation Heading */
+    .main-title {
+      font-family: 'Ramabhadra', 'Cinzel', serif;
+      font-size: 26px;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      margin: 10px 0;
+      text-shadow: 0 1px 1px rgba(212, 175, 55, 0.5);
+    }
+    .sub-invite {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Couple Showcase */
+    .couple-showcase {
+      background: linear-gradient(180deg, rgba(212, 175, 55, 0.12) 0%, rgba(117, 0, 20, 0.05) 100%);
+      border-radius: 16px;
+      padding: 22px 14px;
+      margin: 20px 0 25px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      position: relative;
+    }
+
+    .groom-box, .bride-box {
+      margin: 8px 0;
+    }
+
+    .role-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--primary-dark);
+      background: linear-gradient(90deg, #FBF5B7, #D4AF37);
+      padding: 2px 12px;
+      border-radius: 12px;
+      margin-bottom: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .person-name {
+      font-family: 'Ramabhadra', 'Cinzel', serif;
+      font-size: 23px;
+      color: var(--primary-dark);
+      font-weight: bold;
+      line-height: 1.3;
+    }
+
+    .parentage {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .weds-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 16px 0;
+      color: var(--gold-dark);
+    }
+    .weds-divider::before, .weds-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .weds-heart {
+      background: var(--primary);
+      color: var(--gold-light);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: 'Great Vibes', cursive, serif;
+      font-size: 20px;
+      border: 1px solid var(--gold);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Sloka Box */
+    .sloka-box {
+      font-style: italic;
+      font-size: 13px;
+      color: var(--primary);
+      background: rgba(251, 245, 183, 0.25);
+      border-left: 3px solid var(--gold);
+      border-right: 3px solid var(--gold);
+      padding: 12px 10px;
+      border-radius: 8px;
+      margin: 20px 0;
+      line-height: 1.6;
+    }
+
+    /* Live Countdown Section */
+    .countdown-section {
+      background: linear-gradient(135deg, #4d000c, #750014);
+      color: #FFF;
+      border-radius: 16px;
+      padding: 18px 12px;
+      margin: 25px 0;
+      border: 1px solid var(--gold);
+      box-shadow: 0 8px 20px rgba(77, 0, 12, 0.35);
+    }
+    .countdown-title {
+      font-size: 13px;
+      color: var(--gold-light);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .countdown-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 10px;
+      padding: 8px 2px;
+    }
+    .count-num {
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif;
+    }
+    .count-label {
+      font-size: 10.5px;
+      color: #E2D3BE;
+      margin-top: 2px;
+    }
+
+    /* Events Timeline */
+    .events-section {
+      margin: 26px 0;
+      text-align: left;
+    }
+    .section-title {
+      text-align: center;
+      font-family: 'Ramabhadra', 'Cinzel', serif;
+      font-size: 19px;
+      color: var(--primary);
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 2px;
+      background: var(--gold);
+      margin: 6px auto 0;
+    }
+
+    .event-card {
+      background: #FFF;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .event-icon {
+      font-size: 28px;
+      background: rgba(251, 245, 183, 0.4);
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--gold);
+      flex-shrink: 0;
+    }
+    .event-info h4 {
+      font-size: 17px;
+      color: var(--primary);
+      margin-bottom: 4px;
+      font-family: 'Ramabhadra', 'Cinzel', serif;
+    }
+    .event-info p {
+      font-size: 13.5px;
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+    .event-subtext {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Venue Box */
+    .venue-card {
+      background: #FFF;
+      border-radius: 14px;
+      padding: 18px 16px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      margin: 20px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .venue-card h4 {
+      font-size: 17px;
+      color: var(--primary);
+      margin-bottom: 6px;
+      font-family: 'Ramabhadra', 'Cinzel', serif;
+    }
+    .venue-address {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+    }
+
+    /* Action Buttons (Maps, Calendar, WhatsApp) */
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 18px 0;
+    }
+    .btn-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transition: all 0.2s ease;
+    }
+    .btn-action:active {
+      transform: translateY(2px);
+    }
+    .btn-maps {
+      background: linear-gradient(135deg, #1E8E3E, #137333);
+      color: #FFF;
+    }
+    .btn-calendar {
+      background: linear-gradient(135deg, #1A73E8, #1557B0);
+      color: #FFF;
+    }
+    .btn-whatsapp-share {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #FFF;
+    }
+    .btn-flower-shower {
+      background: linear-gradient(135deg, #AA771C, #D4AF37);
+      color: #4d000c;
+    }
+
+    /* Hosts & Contacts */
+    .hosts-section {
+      border-top: 1px dashed var(--gold);
+      padding-top: 20px;
+      margin-top: 24px;
+    }
+    .hosts-title {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .hosts-names {
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+    .contacts-grid {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .contact-chip {
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Footer Warm Message */
+    .warm-footer {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 24px;
+      line-height: 1.6;
+    }
+    .signature {
+      font-family: 'Great Vibes', cursive, serif;
+      font-size: 26px;
+      color: var(--gold-dark);
+      margin-top: 10px;
+    }
+
+    /* Audio Play Overlay modal for browser autoplay policy */
+    #audioModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .audio-modal-content {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 28px 20px;
+      max-width: 340px;
+      text-align: center;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+    }
+    .btn-enter {
+      background: linear-gradient(135deg, #750014, #4d000c);
+      color: var(--gold-light);
+      border: 1px solid var(--gold);
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: bold;
+      margin-top: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      width: 100%;
+    }
+
+    /* Toast notification */
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 25px;
+      padding: 12px;
+      position: fixed;
+      z-index: 200;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      font-size: 13px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+    @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+    @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+  </style>
+</head>
+<body>
+
+  <!-- Petals Canvas -->
+  <canvas id="petalsCanvas"></canvas>
+  <div class="bg-pattern"></div>
+
+  <!-- Top Controls -->
+  <div class="top-floating-bar">
+    <button class="pill-btn" id="langToggleBtn" onclick="toggleLanguage()">
+      <span>🌐</span> <span id="langBtnText">English</span>
+    </button>
+    <button class="pill-btn" id="musicToggleBtn" onclick="toggleMusic()">
+      <span id="musicIcon">🎵</span> <span id="musicText">సీతారామం BGM</span>
+    </button>
+  </div>
+
+  <!-- Welcome / Music Modal (To comply with browser autoplay audio) -->
+  <div id="audioModal">
+    <div class="audio-modal-content">
+      <div style="font-size: 38px; margin-bottom: 8px;">💍✨</div>
+      <h3 style="color: var(--primary); font-family: 'Ramabhadra', serif; font-size: 20px; margin-bottom: 8px;">
+        జీవన్ & కృష్ణకుమారి
+      </h3>
+      <p style="font-size: 13.5px; color: var(--text-dark); line-height: 1.5;">
+        కళ్యాణ మహోత్సవ ఆహ్వాన పత్రికకు స్వాగతం!<br>
+        <strong>సీతారామం ఫ్లూట్ BGM</strong>తో ఓపెన్ చేయండి.
+      </p>
+      <button class="btn-enter" onclick="enterInviteWithMusic()">
+        💐 ఆహ్వానాన్ని తెరవండి (Open)
+      </button>
+
+      <div style="margin-top: 14px; border-top: 1px dashed var(--gold); padding-top: 12px;">
+        <input type="file" id="songFileInput" accept="audio/*" style="display:none" onchange="handleUserSongUpload(event)">
+        <button type="button" onclick="document.getElementById('songFileInput').click()" 
+                style="background: transparent; border: 1px solid var(--gold-dark); color: var(--primary); padding: 8px 14px; border-radius: 20px; font-size: 12.5px; cursor: pointer; font-weight: bold; width: 100%;">
+          🎵 మీ దగ్గరున్న MP3 పాటను ఎంచుకోండి (Choose Song)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="mobile-container">
+    <div class="invitation-card">
+      
+      <!-- Corners -->
+      <div class="corner-decor corner-tl"></div>
+      <div class="corner-decor corner-tr"></div>
+      <div class="corner-decor corner-bl"></div>
+      <div class="corner-decor corner-br"></div>
+
+      <!-- Sacred Blessing Header -->
+      <div class="sacred-header">
+        <span class="t-srirastu">శ్రీరస్తు</span>
+        <span class="t-subhamastu">శుభమస్తు</span>
+        <span class="t-avignamastu">అవిఘ్నమస్తు</span>
+      </div>
+
+      <!-- Ganesha SVG Icon -->
+      <svg class="ganesha-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="45" stroke="#D4AF37" stroke-width="2" fill="rgba(251, 245, 183, 0.3)"/>
+        <!-- Stylized Om / Ganesha silhouette in gold -->
+        <path d="M50 20 C42 20 36 26 36 34 C36 42 44 48 50 52 C56 48 64 42 64 34 C64 26 58 20 50 20 Z" fill="#AA771C"/>
+        <path d="M50 52 C45 56 42 64 42 70 C42 76 46 80 50 80 C54 80 58 76 58 70 C58 64 55 56 50 52 Z" fill="#AA771C"/>
+        <circle cx="50" cy="38" r="4" fill="#750014"/>
+        <path d="M48 24 L52 24 L50 16 Z" fill="#D4AF37"/>
+      </svg>
+
+      <!-- Ancestral Blessings -->
+      <div class="family-blessing">
+        <span class="t-blessings-title">శ్రీ జాక లక్ష్మీనారాయణ (లేటు) - శ్రీమతి ఆదిలక్ష్మి దంపతుల ఆశీస్సులతో...</span><br>
+        <strong class="t-inviters">శ్రీ జాక ఈశ్వరరావు - శ్రీమతి అరుణ దంపతులు</strong><br>
+        <span class="t-cordial">వ్రాయు శుభలేఖార్థములు</span>
+      </div>
+
+      <h1 class="main-title t-title">వివాహ ఆహ్వాన పత్రిక</h1>
+      <p class="sub-invite t-subinvite">
+        మా ఇంట్లో జరగబోయే మా ప్రథమ పుత్రుని వివాహ శుభకార్యానికి మిమ్మల్ని, మీ కుటుంబాన్ని సాదరంగా ఆహ్వానిస్తున్నాము.
+      </p>
+
+      <!-- Couple Details -->
+      <div class="couple-showcase">
+        
+        <!-- Groom -->
+        <div class="groom-box">
+          <span class="role-badge t-groom-badge">వరుడు</span>
+          <div class="person-name t-groom-name">చి॥ జీవన్ కుమార్</div>
+          <div class="parentage t-groom-parents">
+            శ్రీ జాక ఈశ్వరరావు - శ్రీమతి అరుణ దంపతుల ప్రథమ పుత్రుడు
+          </div>
+        </div>
+
+        <!-- Weds Heart Divider -->
+        <div class="weds-divider">
+          <div class="weds-heart">Weds</div>
+        </div>
+
+        <!-- Bride -->
+        <div class="bride-box">
+          <span class="role-badge t-bride-badge">వధువు</span>
+          <div class="person-name t-bride-name">చి॥ ల॥ సౌ॥ కృష్ణకుమారి</div>
+          <div class="parentage t-bride-parents">
+            శ్రీ కడుపు రాజేశ్వరరావు - శ్రీమతి మహాలక్ష్మి దంపతుల ఏకైక పుత్రిక<br>
+            <small style="color: var(--gold-dark);">(మావూరి వీధి, శ్రీకాకుళం)</small>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sacred Sloka -->
+      <div class="sloka-box t-sloka">
+        "శ్లో॥ శ్రీరామపత్నీ జనకస్యపుత్రీ సీతాంగనా సుందర కోమలాంగీ<br>
+        భూగర్భజాతా భువనైక మాతా వధూవరాభ్యాం వరదా భవంతు॥"
+      </div>
+
+      <!-- Live Countdown -->
+      <div class="countdown-section">
+        <div class="countdown-title">
+          <span>⏳</span> <span class="t-countdown-label">కళ్యాణ మహోత్సవానికి ఇంకా...</span>
+        </div>
+        <div class="countdown-grid">
+          <div class="countdown-box">
+            <div class="count-num" id="days">00</div>
+            <div class="count-label t-days">రోజులు</div>
+          </div>
+          <div class="countdown-box">
+            <div class="count-num" id="hours">00</div>
+            <div class="count-label t-hours">గంటలు</div>
+          </div>
+          <div class="countdown-box">
+            <div class="count-num" id="minutes">00</div>
+            <div class="count-label t-minutes">నిమిషాలు</div>
+          </div>
+          <div class="countdown-box">
+            <div class="count-num" id="seconds">00</div>
+            <div class="count-label t-seconds">సెకన్లు</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Events Schedule -->
+      <div class="events-section">
+        <h3 class="section-title t-events-title">శుభకార్య వివరాలు</h3>
+
+        <!-- Lunch / Feast -->
+        <div class="event-card">
+          <div class="event-icon">🍛</div>
+          <div class="event-info">
+            <h4 class="t-lunch-title">కళ్యాణ విందు (Lunch)</h4>
+            <p class="t-lunch-date"><strong>10-12-2026 గురువారం</strong></p>
+            <p class="t-lunch-time">మధ్యాహ్నం 12:00 గంటల నుండి</p>
+            <div class="event-subtext t-lunch-place">కళ్యాణవేదిక వద్ద</div>
+          </div>
+        </div>
+
+        <!-- Sumuhurtham -->
+        <div class="event-card" style="border: 2px solid var(--gold); background: #FFFDF5;">
+          <div class="event-icon" style="background: var(--gold-light);">💍</div>
+          <div class="event-info">
+            <h4 class="t-muhurtham-title" style="color: var(--primary);">సుముహూర్తం (Sumuhurtham)</h4>
+            <p class="t-muhurtham-date"><strong>10-12-2026 గురువారం రాత్రి</strong></p>
+            <p class="t-muhurtham-time" style="font-weight: bold; color: var(--primary-dark);">
+              రాత్రి గం॥ 08:31 నిమిషాలకు
+            </p>
+            <div class="event-subtext t-muhurtham-lagna">
+              మూల నక్షత్రయుత కర్కాటక లగ్నమందు
+            </div>
+          </div>
+        </div>
+
+        <!-- Venue -->
+        <div class="venue-card">
+          <div style="font-size: 26px; margin-bottom: 4px;">📍</div>
+          <h4 class="t-venue-title">కళ్యాణవేదిక (Venue)</h4>
+          <div class="venue-address t-venue-address">
+            <strong>మా స్వగృహమునందు</strong><br>
+            మద్ది వీధి, హాస్పిటల్ జంక్షన్,<br>
+            శ్రీకాకుళం - ఆంధ్రప్రదేశ్.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        
+        <!-- Google Maps Direct Navigation -->
+        <a href="https://www.google.com/maps/search/?api=1&query=Maddi+Street,+Hospital+Junction,+Srikakulam" 
+           target="_blank" class="btn-action btn-maps">
+          <span>📍</span> <span class="t-btn-maps">గూగుల్ మ్యాప్స్‌లో దారి చూడండి</span>
+        </a>
+
+        <!-- Add to Google Calendar -->
+        <a id="calendarLink" href="#" target="_blank" class="btn-action btn-calendar">
+          <span>📅</span> <span class="t-btn-cal">గూగుల్ క్యాలెండర్‌లో సేవ్ చేసుకోండి</span>
+        </a>
+
+        <!-- Shower Flower Petals / Akshintalu -->
+        <button class="btn-action btn-flower-shower" onclick="showerPetalsBurst()">
+          <span>💐</span> <span class="t-btn-shower">అక్షింతలు వేసి ఆశీర్వదించండి</span>
+        </button>
+
+        <!-- Forward on WhatsApp -->
+        <button class="btn-action btn-whatsapp-share" onclick="shareOnWhatsApp()">
+          <span>📲</span> <span class="t-btn-share">ఈ ఆహ్వానాన్ని వాట్సాప్‌లో షేర్ చేయండి</span>
+        </button>
+
+      </div>
+
+      <!-- Warm Invite Paragraph from Card -->
+      <div style="background: rgba(251, 245, 183, 0.2); border-radius: 12px; padding: 14px; margin: 20px 0; font-size: 13.5px; line-height: 1.6; color: var(--text-dark);">
+        <p class="t-poetic-invite">
+          "వేద మంత్రాలతో... పచ్చని పందిరిలో... అర్థేచ, కామేచ, మోక్షేచ, నాతిచరామి అన్న పలుకులు వారు పలికే ఆ శుభసమయంలో మీరంతా విచ్చేసి మీ హృదయాతాక్షింతలు వధూవరులపై కురిపించి మా ఆతిథ్యం స్వీకరించ ప్రార్థన."
+        </p>
+      </div>
+
+      <!-- Hosts & RSVP -->
+      <div class="hosts-section">
+        <div class="hosts-title t-hosts-heading">ఆహ్వానించువారు</div>
+        <div class="hosts-names t-hosts-name">శ్రీ జాక ఈశ్వరరావు - అరుణ దంపతులు</div>
+
+        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;" class="t-contact-help">
+          ఏదైనా సమాచారం కొరకు సంప్రదించండి:
+        </div>
+        <div class="contacts-grid">
+          <a href="tel:9908139912" class="contact-chip">
+            <span>📞</span> 9908139912
+          </a>
+          <a href="tel:7816016620" class="contact-chip">
+            <span>📞</span> 7816016620
+          </a>
+          <a href="https://wa.me/919908139912?text=Hearty%20congratulations%20on%20Jeevan%20and%20Krishna%20Kumari's%20wedding!" target="_blank" class="contact-chip" style="background: #E8F5E9; border-color: #4CAF50; color: #1B5E20;">
+            <span>💬</span> WhatsApp Wish
+          </a>
+        </div>
+
+        <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 14px;" class="t-compliments">
+          మరియు బంధుమిత్రుల అభినందనలతో...
+        </div>
+      </div>
+
+      <!-- Footer Signature -->
+      <div class="warm-footer">
+        <span class="t-footer-msg">మీ రాకయే మాకు ఆనందం, మీ ఆశీస్సులే మాకు రక్ష!</span>
+        <div class="signature">Jeevan & Krishna Kumari</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="toast">Copied link to clipboard!</div>
+
+  <!-- Audio Element: User can place any music.mp3 in this folder, or paste online MP3 link -->
+  <audio id="weddingAudio" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // --- Translations (Telugu / English) ---
+    let currentLang = 'te';
+
+    const contentData = {
+      te: {
+        langBtn: "English",
+        srirastu: "శ్రీరస్తు",
+        subhamastu: "శుభమస్తు",
+        avignamastu: "అవిఘ్నమస్తు",
+        blessingsTitle: "శ్రీ జాక లక్ష్మీనారాయణ (లేటు) - శ్రీమతి ఆదిలక్ష్మి దంపతుల ఆశీస్సులతో...",
+        inviters: "శ్రీ జాక ఈశ్వరరావు - శ్రీమతి అరుణ దంపతులు",
+        cordial: "వ్రాయు శుభలేఖార్థములు",
+        title: "వివాహ ఆహ్వాన పత్రిక",
+        subinvite: "మా ఇంట్లో జరగబోయే మా ప్రథమ పుత్రుని వివాహ శుభకార్యానికి మిమ్మల్ని, మీ కుటుంబాన్ని సాదరంగా ఆహ్వానిస్తున్నాము.",
+        groomBadge: "వరుడు",
+        groomName: "చి॥ జీవన్ కుమార్",
+        groomParents: "శ్రీ జాక ఈశ్వరరావు - శ్రీమతి అరుణ దంపతుల ప్రథమ పుత్రుడు",
+        brideBadge: "వధువు",
+        brideName: "చి॥ ల॥ సౌ॥ కృష్ణకుమారి",
+        brideParents: "శ్రీ కడుపు రాజేశ్వరరావు - శ్రీమతి మహాలక్ష్మి దంపతుల ఏకైక పుత్రిక (మావూరి వీధి, శ్రీకాకుళం)",
+        countdownLabel: "కళ్యాణ మహోత్సవానికి ఇంకా...",
+        days: "రోజులు",
+        hours: "గంటలు",
+        minutes: "నిమిషాలు",
+        seconds: "సెకన్లు",
+        eventsTitle: "శుభకార్య వివరాలు",
+        lunchTitle: "కళ్యాణ విందు (Lunch)",
+        lunchDate: "10-12-2026 గురువారం",
+        lunchTime: "మధ్యాహ్నం 12:00 గంటల నుండి",
+        lunchPlace: "కళ్యాణవేదిక వద్ద",
+        muhurthamTitle: "సుముహూర్తం (Sumuhurtham)",
+        muhurthamDate: "10-12-2026 గురువారం రాత్రి",
+        muhurthamTime: "రాత్రి గం॥ 08:31 నిమిషాలకు",
+        muhurthamLagna: "మూల నక్షత్రయుత కర్కాటక లగ్నమందు",
+        venueTitle: "కళ్యాణవేదిక (Venue)",
+        venueAddress: "మా స్వగృహమునందు<br>మద్ది వీధి, హాస్పిటల్ జంక్షన్,<br>శ్రీకాకుళం - ఆంధ్రప్రదేశ్.",
+        btnMaps: "గూగుల్ మ్యాప్స్‌లో దారి చూడండి",
+        btnCal: "గూగుల్ క్యాలెండర్‌లో సేవ్ చేసుకోండి",
+        btnShower: "అక్షింతలు వేసి ఆశీర్వదించండి",
+        btnShare: "ఈ ఆహ్వానాన్ని వాట్సాప్‌లో షేర్ చేయండి",
+        hostsHeading: "ఆహ్వానించువారు",
+        hostsName: "శ్రీ జాక ఈశ్వరరావు - అరుణ దంపతులు",
+        contactHelp: "ఏదైనా సమాచారం కొరకు సంప్రదించండి:",
+        compliments: "మరియు బంధుమిత్రుల అభినందనలతో...",
+        footerMsg: "మీ రాకయే మాకు ఆనందం, మీ ఆశీస్సులే మాకు రక్ష!"
+      },
+      en: {
+        langBtn: "తెలుగు",
+        srirastu: "Srirastu",
+        subhamastu: "Subhamastu",
+        avignamastu: "Avignamastu",
+        blessingsTitle: "With the divine blessings of Sri Jaka Laxminarayana (Late) & Smt. Adhilaxmi",
+        inviters: "Sri Jaka Eswara Rao - Smt. Aruna",
+        cordial: "Solicit your gracious presence",
+        title: "Wedding Invitation",
+        subinvite: "Solicit your gracious presence with family and friends on the auspicious occasion of the marriage of our Eldest Son.",
+        groomBadge: "Groom",
+        groomName: "Chy. Jeevan Kumar",
+        groomParents: "Eldest Son of Sri Jaka Eswara Rao & Smt. Aruna",
+        brideBadge: "Bride",
+        brideName: "Chy.La.Sow. Krishna Kumari",
+        brideParents: "Only Daughter of Sri Kadupu Rajeswara Rao & Smt. Mahalakshmi (Maavuri Street, Srikakulam)",
+        countdownLabel: "Countdown to the Auspicious Moment...",
+        days: "Days",
+        hours: "Hours",
+        minutes: "Mins",
+        seconds: "Secs",
+        eventsTitle: "Ceremony & Events",
+        lunchTitle: "Wedding Feast (Lunch)",
+        lunchDate: "Thursday, 10th December 2026",
+        lunchTime: "From 12:00 Noon onwards",
+        lunchPlace: "At Marriage Venue",
+        muhurthamTitle: "Sumuhurtham",
+        muhurthamDate: "Thursday, 10th December 2026",
+        muhurthamTime: "Night at 08:31 PM",
+        muhurthamLagna: "Mula Nakshatrayuta Karkataka Lagnam",
+        venueTitle: "Marriage Venue",
+        venueAddress: "At our Residence<br>Maddi Street, Hospital Junction,<br>Srikakulam - Andhra Pradesh.",
+        btnMaps: "Navigate on Google Maps",
+        btnCal: "Add to Google Calendar",
+        btnShower: "Shower Blessings & Petals",
+        btnShare: "Share Invitation on WhatsApp",
+        hostsHeading: "With Best Compliments From",
+        hostsName: "Sri Jaka Eswara Rao & Smt. Aruna",
+        contactHelp: "For any queries or assistance, please contact:",
+        compliments: "With Best Compliments From Near & Dear",
+        footerMsg: "Your presence and blessings are our greatest gifts!"
+      }
+    };
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'te' ? 'en' : 'te';
+      const d = contentData[currentLang];
+      
+      document.getElementById('langBtnText').textContent = d.langBtn;
+      document.querySelector('.t-srirastu').textContent = d.srirastu;
+      document.querySelector('.t-subhamastu').textContent = d.subhamastu;
+      document.querySelector('.t-avignamastu').textContent = d.avignamastu;
+      document.querySelector('.t-blessings-title').textContent = d.blessingsTitle;
+      document.querySelector('.t-inviters').textContent = d.inviters;
+      document.querySelector('.t-cordial').textContent = d.cordial;
+      document.querySelector('.t-title').textContent = d.title;
+      document.querySelector('.t-subinvite').textContent = d.subinvite;
+      document.querySelector('.t-groom-badge').textContent = d.groomBadge;
+      document.querySelector('.t-groom-name').textContent = d.groomName;
+      document.querySelector('.t-groom-parents').textContent = d.groomParents;
+      document.querySelector('.t-bride-badge').textContent = d.brideBadge;
+      document.querySelector('.t-bride-name').textContent = d.brideName;
+      document.querySelector('.t-bride-parents').innerHTML = d.brideParents;
+      document.querySelector('.t-countdown-label').textContent = d.countdownLabel;
+      document.querySelector('.t-days').textContent = d.days;
+      document.querySelector('.t-hours').textContent = d.hours;
+      document.querySelector('.t-minutes').textContent = d.minutes;
+      document.querySelector('.t-seconds').textContent = d.seconds;
+      document.querySelector('.t-events-title').textContent = d.eventsTitle;
+      document.querySelector('.t-lunch-title').textContent = d.lunchTitle;
+      document.querySelector('.t-lunch-date').innerHTML = `<strong>${d.lunchDate}</strong>`;
+      document.querySelector('.t-lunch-time').textContent = d.lunchTime;
+      document.querySelector('.t-lunch-place').textContent = d.lunchPlace;
+      document.querySelector('.t-muhurtham-title').textContent = d.muhurthamTitle;
+      document.querySelector('.t-muhurtham-date').innerHTML = `<strong>${d.muhurthamDate}</strong>`;
+      document.querySelector('.t-muhurtham-time').textContent = d.muhurthamTime;
+      document.querySelector('.t-muhurtham-lagna').textContent = d.muhurthamLagna;
+      document.querySelector('.t-venue-title').textContent = d.venueTitle;
+      document.querySelector('.t-venue-address').innerHTML = d.venueAddress;
+      document.querySelector('.t-btn-maps').textContent = d.btnMaps;
+      document.querySelector('.t-btn-cal').textContent = d.btnCal;
+      document.querySelector('.t-btn-shower').textContent = d.btnShower;
+      document.querySelector('.t-btn-share').textContent = d.btnShare;
+      document.querySelector('.t-hosts-heading').textContent = d.hostsHeading;
+      document.querySelector('.t-hosts-name').textContent = d.hostsName;
+      document.querySelector('.t-contact-help').textContent = d.contactHelp;
+      document.querySelector('.t-compliments').textContent = d.compliments;
+      document.querySelector('.t-footer-msg').textContent = d.footerMsg;
+    }
+
+    // --- Google Calendar Link Generator ---
+    function setupCalendarLink() {
+      // 10 Dec 2026 20:31 IST -> 20261210T150100Z (UTC: -5:30)
+      const title = encodeURIComponent("💍 Jeevan Kumar & Krishna Kumari Wedding");
+      const details = encodeURIComponent("Sumuhurtham: Thursday 10th Dec 2026 Night at 8:31 PM.\nLunch: From 12:00 Noon onwards.\nVenue: Maddi Street, Hospital Junction, Srikakulam.");
+      const location = encodeURIComponent("Maddi Street, Hospital Junction, Srikakulam, Andhra Pradesh");
+      const dates = "20261210T143000Z/20261210T183000Z";
+      const calUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+      document.getElementById('calendarLink').href = calUrl;
+    }
+    setupCalendarLink();
+
+    // --- Live Countdown to Dec 10, 2026 20:31:00 IST ---
+    const targetDate = new Date('2026-12-10T20:31:00+05:30').getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        document.getElementById('days').innerText = "00";
+        document.getElementById('hours').innerText = "00";
+        document.getElementById('minutes').innerText = "00";
+        document.getElementById('seconds').innerText = "00";
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = String(days).padStart(2, '0');
+      document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+      document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // --- Falling Flower Petals Canvas ---
+    const canvas = document.getElementById('petalsCanvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const petalColors = ['#FFD700', '#FFA500', '#FF69B4', '#FFF5EE', '#E91E63'];
+    const petals = [];
+    for (let i = 0; i < 25; i++) {
+      petals.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 5 + 3,
+        dx: (Math.random() - 0.5) * 1.5,
+        dy: Math.random() * 1.5 + 1,
+        color: petalColors[Math.floor(Math.random() * petalColors.length)],
+        tilt: Math.random() * 10
+      });
+    }
+
+    function renderPetals() {
+      ctx.clearRect(0, 0, width, height);
+      petals.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = 'rgba(212, 175, 55, 0.4)';
+        ctx.shadowBlur = 4;
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+        p.tilt += 0.05;
+
+        if (p.y > height) {
+          p.y = -10;
+          p.x = Math.random() * width;
+        }
+      });
+      requestAnimationFrame(renderPetals);
+    }
+    renderPetals();
+
+    function showerPetalsBurst() {
+      for (let i = 0; i < 40; i++) {
+        petals.push({
+          x: width / 2 + (Math.random() - 0.5) * 200,
+          y: height / 3 + (Math.random() - 0.5) * 50,
+          r: Math.random() * 6 + 4,
+          dx: (Math.random() - 0.5) * 5,
+          dy: Math.random() * 3 + 2,
+          color: petalColors[Math.floor(Math.random() * petalColors.length)],
+          tilt: Math.random() * 10
+        });
+      }
+      showToast("💐 వధూవరులపై అక్షింతలు సమర్పించబడ్డాయి!");
+    }
+
+    // --- Sita Ramam Flute Theme Melody Synthesizer ---
+    let audioCtx = null;
+    let isPlaying = false;
+    let musicTimer = null;
+
+    // Sita Ramam (Oh Sita Hey Rama / Inthandham melody: frequency in Hz & duration in ms)
+    const sitaRamamMelody = [
+      { f: 587.33, d: 550 }, // D5 (In-)
+      { f: 659.25, d: 400 }, // E5 (-than-)
+      { f: 739.99, d: 850 }, // F#5 (-dham)
+      { f: 659.25, d: 450 }, // E5 (daa-)
+      { f: 587.33, d: 650 }, // D5 (-gun-)
+      { f: 493.88, d: 600 }, // B4 (-naa)
+      { f: 440.00, d: 900 }, // A4
+      { f: 392.00, d: 450 }, // G4 (vin-)
+      { f: 440.00, d: 550 }, // A4 (-tha)
+      { f: 493.88, d: 750 }, // B4 (yee)
+      { f: 587.33, d: 950 }, // D5 (nin-)
+      { f: 659.25, d: 550 }, // E5 (-gi)
+      { f: 587.33, d: 1300 }, // D5
+      { f: 0, d: 450 },      // Rest
+
+      // Second phrase: Oh Sita... Hey Rama...
+      { f: 739.99, d: 600 }, // F#5 (Oh)
+      { f: 880.00, d: 900 }, // A5 (Sita)
+      { f: 739.99, d: 500 }, // F#5
+      { f: 659.25, d: 850 }, // E5
+      { f: 587.33, d: 600 }, // D5 (Hey)
+      { f: 739.99, d: 950 }, // F#5 (Rama)
+      { f: 659.25, d: 550 }, // E5
+      { f: 587.33, d: 1400 }, // D5
+      { f: 0, d: 700 }       // Rest before looping
+    ];
+    let noteIdx = 0;
+
+    function playTraditionalTune() {
+      if (!isPlaying || !audioCtx) return;
+      
+      const item = sitaRamamMelody[noteIdx % sitaRamamMelody.length];
+      const durationSec = item.d / 1000;
+
+      if (item.f > 0) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        const vibrato = audioCtx.createOscillator();
+        const vibratoGain = audioCtx.createGain();
+
+        // Flute timbre: sine + gentle harmonics
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(item.f, audioCtx.currentTime);
+
+        // Gentle flute vibrato (5 Hz pitch modulation)
+        vibrato.frequency.value = 5.2;
+        vibratoGain.gain.value = 3.5;
+        vibrato.connect(osc.frequency);
+        vibrato.start();
+
+        // Soft acoustic flute breath envelope
+        gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.08, audioCtx.currentTime + 0.12);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + durationSec - 0.05);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + durationSec);
+        vibrato.stop(audioCtx.currentTime + durationSec);
+      }
+
+      noteIdx++;
+      musicTimer = setTimeout(playTraditionalTune, item.d);
+    }
+
+    const audioElem = document.getElementById('weddingAudio');
+    let usingHtmlAudio = false;
+
+    function playAudioTrack() {
+      if (audioElem && audioElem.src) {
+        audioElem.play().then(() => {
+          usingHtmlAudio = true;
+          isPlaying = true;
+          document.getElementById('musicIcon').textContent = "🎵";
+          document.getElementById('musicText').textContent = "Playing";
+        }).catch(() => {
+          // Fallback to synth if custom mp3 file is not found
+          usingHtmlAudio = false;
+          playSynthMusic();
+        });
+      } else {
+        playSynthMusic();
+      }
+    }
+
+    function playSynthMusic() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      isPlaying = true;
+      document.getElementById('musicIcon').textContent = "🎵";
+      document.getElementById('musicText').textContent = "Playing";
+      playTraditionalTune();
+    }
+
+    function toggleMusic() {
+      if (isPlaying) {
+        isPlaying = false;
+        if (usingHtmlAudio && audioElem) {
+          audioElem.pause();
+        }
+        clearTimeout(musicTimer);
+        document.getElementById('musicIcon').textContent = "🔇";
+        document.getElementById('musicText').textContent = "Muted";
+      } else {
+        playAudioTrack();
+      }
+    }
+
+    // --- IndexedDB for Permanent Audio Storage in Browser ---
+    function openAudioDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open('WeddingInviteDB', 1);
+        req.onupgradeneeded = () => req.result.createObjectStore('audioStore');
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function saveAudioToDB(file) {
+      try {
+        const db = await openAudioDB();
+        const tx = db.transaction('audioStore', 'readwrite');
+        tx.objectStore('audioStore').put(file, 'bgSong');
+      } catch (e) {
+        console.warn("Could not save to DB", e);
+      }
+    }
+
+    async function loadAudioFromDB() {
+      try {
+        const db = await openAudioDB();
+        const tx = db.transaction('audioStore', 'readonly');
+        const req = tx.objectStore('audioStore').get('bgSong');
+        req.onsuccess = () => {
+          if (req.result) {
+            const objectUrl = URL.createObjectURL(req.result);
+            audioElem.src = objectUrl;
+            usingHtmlAudio = true;
+            console.log("Loaded permanent saved song from IndexedDB!");
+          }
+        };
+      } catch (e) {
+        console.warn("Could not load from DB", e);
+      }
+    }
+    loadAudioFromDB();
+
+    function handleUserSongUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (file) {
+        const objectUrl = URL.createObjectURL(file);
+        audioElem.src = objectUrl;
+        usingHtmlAudio = true;
+        saveAudioToDB(file);
+        showToast("🎵 పాట పర్మనెంట్‌గా సేవ్ అయ్యింది!");
+        enterInviteWithMusic();
+      }
+    }
+
+    function enterInviteWithMusic() {
+      document.getElementById('audioModal').style.display = 'none';
+      playAudioTrack();
+      showerPetalsBurst();
+    }
+
+    // --- WhatsApp Share ---
+    function shareOnWhatsApp() {
+      const shareUrl = window.location.href;
+      const shareText = `💍 *జీవన్ కుమార్ & కృష్ణకుమారి వివాహ ఆహ్వాన పత్రిక* 💐\n\nతేది: 10 డిసెంబర్ 2026 (గురువారం)\nముహూర్తం: రాత్రి 8:31 ని॥లకు\nవేదిక: శ్రీకాకుళం\n\nపూర్తి వివరాలు, గూగుల్ మ్యాప్స్ లొకేషన్ & డిజిటల్ ఆహ్వానం కోసం క్రింది లింక్ చూడండి:\n👉 ${shareUrl}`;
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.innerText = msg;
+      toast.className = "show";
+      setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+    }
+  </script>
+</body>
+</html>
