@@ -561,7 +561,7 @@
       <span>🌐</span> <span id="langBtnText">English</span>
     </button>
     <button class="pill-btn" id="musicToggleBtn" onclick="toggleMusic()">
-      <span id="musicIcon">🎵</span> <span id="musicText">సీతారామం BGM</span>
+      <span id="musicIcon">🎵</span> <span id="musicText">సంగీతం</span>
     </button>
   </div>
 
@@ -574,19 +574,11 @@
       </h3>
       <p style="font-size: 13.5px; color: var(--text-dark); line-height: 1.5;">
         కళ్యాణ మహోత్సవ ఆహ్వాన పత్రికకు స్వాగతం!<br>
-        <strong>సీతారామం ఫ్లూట్ BGM</strong>తో ఓపెన్ చేయండి.
+        మంగళ వాయిద్యాల సంగీతంతో ఓపెన్ చేయండి.
       </p>
       <button class="btn-enter" onclick="enterInviteWithMusic()">
         💐 ఆహ్వానాన్ని తెరవండి (Open)
       </button>
-
-      <div style="margin-top: 14px; border-top: 1px dashed var(--gold); padding-top: 12px;">
-        <input type="file" id="songFileInput" accept="audio/*" style="display:none" onchange="handleUserSongUpload(event)">
-        <button type="button" onclick="document.getElementById('songFileInput').click()" 
-                style="background: transparent; border: 1px solid var(--gold-dark); color: var(--primary); padding: 8px 14px; border-radius: 20px; font-size: 12.5px; cursor: pointer; font-weight: bold; width: 100%;">
-          🎵 మీ దగ్గరున్న MP3 పాటను ఎంచుకోండి (Choose Song)
-        </button>
-      </div>
     </div>
   </div>
 
@@ -1120,100 +1112,28 @@
     }
 
     const audioElem = document.getElementById('weddingAudio');
-    let usingHtmlAudio = false;
+    let isPlaying = false;
 
     function playAudioTrack() {
-      if (audioElem && audioElem.src) {
+      if (audioElem) {
         audioElem.play().then(() => {
-          usingHtmlAudio = true;
           isPlaying = true;
           document.getElementById('musicIcon').textContent = "🎵";
           document.getElementById('musicText').textContent = "Playing";
-        }).catch(() => {
-          // Fallback to synth if custom mp3 file is not found
-          usingHtmlAudio = false;
-          playSynthMusic();
+        }).catch((err) => {
+          console.log("Autoplay waiting for user click", err);
         });
-      } else {
-        playSynthMusic();
       }
-    }
-
-    function playSynthMusic() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      isPlaying = true;
-      document.getElementById('musicIcon').textContent = "🎵";
-      document.getElementById('musicText').textContent = "Playing";
-      playTraditionalTune();
     }
 
     function toggleMusic() {
       if (isPlaying) {
+        if (audioElem) audioElem.pause();
         isPlaying = false;
-        if (usingHtmlAudio && audioElem) {
-          audioElem.pause();
-        }
-        clearTimeout(musicTimer);
         document.getElementById('musicIcon').textContent = "🔇";
         document.getElementById('musicText').textContent = "Muted";
       } else {
         playAudioTrack();
-      }
-    }
-
-    // --- IndexedDB for Permanent Audio Storage in Browser ---
-    function openAudioDB() {
-      return new Promise((resolve, reject) => {
-        const req = indexedDB.open('WeddingInviteDB', 1);
-        req.onupgradeneeded = () => req.result.createObjectStore('audioStore');
-        req.onsuccess = () => resolve(req.result);
-        req.onerror = () => reject(req.error);
-      });
-    }
-
-    async function saveAudioToDB(file) {
-      try {
-        const db = await openAudioDB();
-        const tx = db.transaction('audioStore', 'readwrite');
-        tx.objectStore('audioStore').put(file, 'bgSong');
-      } catch (e) {
-        console.warn("Could not save to DB", e);
-      }
-    }
-
-    async function loadAudioFromDB() {
-      try {
-        const db = await openAudioDB();
-        const tx = db.transaction('audioStore', 'readonly');
-        const req = tx.objectStore('audioStore').get('bgSong');
-        req.onsuccess = () => {
-          if (req.result) {
-            const objectUrl = URL.createObjectURL(req.result);
-            audioElem.src = objectUrl;
-            usingHtmlAudio = true;
-            console.log("Loaded permanent saved song from IndexedDB!");
-          }
-        };
-      } catch (e) {
-        console.warn("Could not load from DB", e);
-      }
-    }
-    loadAudioFromDB();
-
-    function handleUserSongUpload(event) {
-      const file = event.target.files && event.target.files[0];
-      if (file) {
-        const objectUrl = URL.createObjectURL(file);
-        audioElem.src = objectUrl;
-        usingHtmlAudio = true;
-        saveAudioToDB(file);
-        showToast("🎵 పాట పర్మనెంట్‌గా సేవ్ అయ్యింది!");
-        enterInviteWithMusic();
       }
     }
 
